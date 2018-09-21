@@ -8,10 +8,11 @@ app.get('/' , (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
-io.on('connection',(socket) => {
+io.on('connection', (socket) => {
   console.log('Socket.io is 繋がってる')
   socket.on('message', (msg) => {
     console.log('message: ' + msg)
+    io.emit('message', msg)
   })
 })
 

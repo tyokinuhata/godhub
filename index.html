@@ -16,10 +16,17 @@
     </form>
     <ul id="messages"></ul>
     <script>
-      const socket = io();
+      const socketio = io()
       document.getElementById('battle').addEventListener('click', () => {
-        socket.emit('message', document.getElementById('religion').value)
+        socketio.emit('message', document.getElementById('religion').value)
         document.getElementById('religion').value = ''
+        return false
+      })
+
+      socketio.on('message', (msg) => {
+        const element = document.createElement('li')
+        element.innerText = msg
+        document.getElementById('messages').appendChild(element)
       })
     </script>
   </body>
