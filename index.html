@@ -10,13 +10,17 @@
     <form>
       <div>
         <label>宗教: </label>
-        <input type="text">
-        <button>たたかう</button>
+        <input type="text" id="religion">
+        <button type="button" id="battle">たたかう</button>
       </div>
     </form>
     <ul id="messages"></ul>
     <script>
       const socket = io();
+      document.getElementById('battle').addEventListener('click', () => {
+        socket.emit('message', document.getElementById('religion').value)
+        document.getElementById('religion').value = ''
+      })
     </script>
   </body>
 </html>

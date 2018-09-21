@@ -10,6 +10,9 @@ app.get('/' , (req, res) => {
 
 io.on('connection',(socket) => {
   console.log('Socket.io is 繋がってる')
+  socket.on('message', (msg) => {
+    console.log('message: ' + msg)
+  })
 })
 
 http.listen(PORT, () => {
