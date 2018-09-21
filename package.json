@@ -1,0 +1,23 @@
+{
+  "name": "godhub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyokinuhata/godhub.git"
+  },
+  "author": "Kazukichi <kazukiti201@gmail.com> (https://tyokinuhata.github.io/portfolio/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tyokinuhata/godhub/issues"
+  },
+  "homepage": "https://github.com/tyokinuhata/godhub#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "socket.io": "^2.1.1"
+  }
+}
