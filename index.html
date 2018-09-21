@@ -11,14 +11,35 @@
       <div>
         <label>宗教: </label>
         <input type="text" id="religion">
-        <button type="button" id="battle">たたかう</button>
       </div>
+      <div>
+        <label>攻撃力: </label>
+        <input type="number" id="attack">
+      </div>
+      <div>
+        <label>守備力: </label>
+        <input type="number" id="defense">
+      </div>
+      <button type="button" id="battle">たたかう</button>
     </form>
     <ul id="messages"></ul>
     <script>
       const socketio = io()
+
       document.getElementById('battle').addEventListener('click', () => {
-        socketio.emit('message', document.getElementById('religion').value)
+        let religion = document.getElementById('religion').value
+        let attack = document.getElementById('attack').value
+        let defense = document.getElementById('defense').value
+        let id = generateId()
+        let message = {
+          [id]: {
+            'name': religion,
+            'attack': attack,
+            'defense': defense,
+            'hp': 100,
+          }
+        }
+        socketio.emit('message', JSON.stringify(message))
         document.getElementById('religion').value = ''
         return false
       })
@@ -28,6 +49,14 @@
         element.innerText = msg
         document.getElementById('messages').appendChild(element)
       })
+
+      const generateId = () => {
+        const len = 10
+        const char = 'abcdefghijklmnopqrstuvwxyz0123456789'
+        let id = ''
+        for (let i = 0; i < len; i++) id += char[Math.floor(Math.random() * char.length)]
+        return id
+      }
     </script>
   </body>
 </html>
