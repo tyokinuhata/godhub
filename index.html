@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>GodHub</title>
     <script src="/socket.io/socket.io.js"></script>
   </head>
@@ -11,19 +11,12 @@
       <div>
         <label>宗教: </label>
         <input type="text">
+        <button>たたかう</button>
       </div>
-
-      <!--<div>-->
-        <!--<label>攻撃力: </label>-->
-        <!--<input type="number">-->
-      <!--</div>-->
-
-      <!--<div>-->
-        <!--<label>守備力</label>-->
-        <!--<input type="number">-->
-      <!--</div>-->
-
-      <button>たたかう</button>
     </form>
+    <ul id="messages"></ul>
+    <script>
+      const socket = io();
+    </script>
   </body>
 </html>
