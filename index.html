@@ -11,7 +11,7 @@
       <ul id="playerInfo" class="list-group"></ul>
       <div id="field">
         <form id="create" class="row mt-4">
-          <label class="col-md-1">ID: </label>
+          <label class="col-md-1">宗教名: </label>
           <input type="text" id="religion" class="form-control col-md-6">
           <div class="col-md-3">
             <button type="button" id="battle" class="btn btn-danger">たたかう</button>
@@ -61,6 +61,7 @@
 
         socketio.emit('message', JSON.stringify({
           [id]: {
+            'id': id,
             'name': religion,
             'believer': 100,
           }
