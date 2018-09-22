@@ -42,9 +42,6 @@ io.on('connection', (socket) => {
         }
       }
     })
-  
-  });
-  
   })
 
   // 切断時の処理
