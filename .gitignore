@@ -1,5 +1,9 @@
 database.json
 .env
 node_modules
+mecab-ipadic-neologd
+word2vec/word.txt
+word2vec/wakati.txt
+word2vec/vector.txt
 .idea
 .DS_Store
