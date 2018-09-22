@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
+const config = require('./.env')
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
-const PORT = process.env.PORT || 7000
+const PORT = config.PORT || 7000
 const fs = require('fs-extra')
 
 app.get('/' , (req, res) => {
@@ -11,7 +12,7 @@ app.get('/' , (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('Socket.io is 繋がってる')
-
+  console.log(config.PORT);
   // 入室前にいたプレイヤーの情報を送信
   let db = fs.readJSONSync('./database.json')
   io.to(socket.id).emit('init', db)
