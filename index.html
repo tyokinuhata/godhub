@@ -77,25 +77,14 @@
         create.parentNode.removeChild(create)
 
         // DOM生成
-//        let form = document.createElement('form')
-//        form.setAttribute('id', 'fight')
-//        let enemy = document.createElement('input')
-//        enemy.setAttribute('type', 'text')
-//        enemy.setAttribute('id', 'enemy')
-//        let attack = document.createElement('button')
-//        attack.setAttribute('type', 'button')
-//        attack.setAttribute('id', 'attack')
-//        attack.innerText = 'こうげき'
-//        form.appendChild(enemy)
-//        form.appendChild(attack)
-//        document.getElementById('field').appendChild(form)
+        document.getElementById('fight').setAttribute('style', 'display: inline;')
 
         return false
       })
 
       // 攻撃する
       document.getElementById('attack').addEventListener('click', () => {
-        const enemy = document.getElementById('enemy')
+        const enemy = document.getElementById('enemy').value
         console.log(enemy)
         socketio.emit('attack', { enemy: enemy, attack: sessionStorage.getItem('attack') })
       })
