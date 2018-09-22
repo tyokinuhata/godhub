@@ -30,6 +30,7 @@
 
       // 宗教を作ってたたかいを開始する
       document.getElementById('battle').addEventListener('click', () => {
+        // フォームデータの送信
         let religion = document.getElementById('religion').value
         let attackPower = document.getElementById('attack').value
         let defensePower = document.getElementById('defense').value
@@ -44,9 +45,12 @@
         }
         socketio.emit('message', JSON.stringify(message))
         document.getElementById('religion').value = ''
+
+        // DOM削除
         let create = document.getElementById('create')
         create.parentNode.removeChild(create)
 
+        // DOM生成
         let form = document.createElement('form')
         form.setAttribute('id', 'fight')
         let enemy = document.createElement('input')
