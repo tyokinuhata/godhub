@@ -49,12 +49,10 @@
 
         sessionStorage.setItem('id', id)
         sessionStorage.setItem('believer', 100)
-        sessionStorage.setItem('hp', 100)
 
         socketio.emit('message', JSON.stringify({
           [id]: {
             'name': religion,
-            'hp': 100,
             'believer': 100,
           }
         }))
