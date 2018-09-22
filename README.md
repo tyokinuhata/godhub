@@ -13,7 +13,7 @@ $ make setup
 ##### 辞書データの書き込み
 
 ```bash
-$ vim word2vec/word.txt // 辞書データを書き込む
+$ vim word2vec/word.txt
 ```
 
 ##### 分かちファイルの作成
