@@ -8,7 +8,7 @@
   <body>
     <h1>GodHub</h1>
     <ul id="messages"></ul>
-    <form>
+    <form id="create">
       <div>
         <label>宗教: </label>
         <input type="text" id="religion">
@@ -42,6 +42,8 @@
         }
         socketio.emit('message', JSON.stringify(message))
         document.getElementById('religion').value = ''
+        let create = document.getElementById('create')
+        create.parentNode.removeChild(create)
         return false
       })
 
