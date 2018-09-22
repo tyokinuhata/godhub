@@ -18,6 +18,7 @@
       </form>
       <form id="fight" style="display: none;">
         <input type="text" id="enemy">
+        <input type="text" id="word" placeholder="ことば">
         <button type="button" id="attack">こうげき</button>
       </form>
     </div>
@@ -73,8 +74,10 @@
       // 攻撃する
       document.getElementById('attack').addEventListener('click', () => {
         const enemy = document.getElementById('enemy').value
-        console.log(enemy)
-        socketio.emit('attack', { enemy: enemy, attack: sessionStorage.getItem('attack') })
+        socketio.emit('attack', {
+          enemy: enemy,
+          word: word,
+        })
       })
 
       // ランダムな文字列の生成

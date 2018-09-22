@@ -26,6 +26,7 @@ io.on('connection', (socket) => {
 
   socket.on('attack', (enemyInfo) => {
     console.log(enemyInfo)
+    // ここ
   })
 })
 
