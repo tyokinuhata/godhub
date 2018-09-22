@@ -12,7 +12,6 @@ app.get('/' , (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('Socket.io is 繋がってる')
-  console.log(config.PORT);
   // 入室前にいたプレイヤーの情報を送信
   let db = fs.readJSONSync('./database.json')
   io.to(socket.id).emit('init', db)
