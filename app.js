@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('Socket.io is 繋がってる')
+
   // 入室前にいたプレイヤーの情報を送信
   let db = fs.readJSONSync('./database.json')
   io.to(socket.id).emit('init', db)
@@ -44,7 +45,15 @@ io.on('connection', (socket) => {
   
   });
   
+  })
 
+  // 切断時の処理
+  socket.on('beforeClose', (id) => {
+    console.log(id)
+    socket.on('disconnect', () => {
+      console.log('ユーザー is 退出した');
+    })
+  })
 })
 
 http.listen(PORT, () => {
