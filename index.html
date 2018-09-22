@@ -91,6 +91,11 @@
         })
       })
 
+      // ウィンドウを閉じるとき
+      window.addEventListener('beforeunload', () => {
+        socketio.emit('beforeClose', sessionStorage.getItem('id'))
+      }, true)
+
       // ランダムな文字列の生成
       const generateId = () => {
         const len = 10

@@ -32,8 +32,11 @@ io.on('connection', (socket) => {
   })
 
   // 切断時の処理
-  socket.on('disconnect', () => {
-    // TODO
+  socket.on('beforeClose', (id) => {
+    console.log(id)
+    socket.on('disconnect', () => {
+      console.log('ユーザー is 退出した');
+    })
   })
 })
 
