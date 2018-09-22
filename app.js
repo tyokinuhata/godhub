@@ -26,31 +26,28 @@ io.on('connection', (socket) => {
   })
 
   // こうげき
-  socket.on('attack', (enemyInfo) => {
-    console.log(enemyInfo)
-    // ここ
+  socket.on('attack', (info) => {
     let db = fs.readJSONSync('./database.json')
-    db.forEach(function (obj) {
-      for (key in obj) {
-        if (obj[key].name == enemyInfo.enemy) {
-          console.log(obj[key].believer -= 5)
-          fs.writeJSONSync('./database.json', db)
-        }
-        if (obj[key].name == enemyInfo.myInfo) {
-          console.log(obj[key].believer += 5)
-          fs.writeJSONSync('./database.json', db)
-        }
+    console.log(db)
+    console.log(info)
+    for (item of db) {
+      if (item.name === info.enemy) {
+        item.believer -= 5
       }
-    })
+      if (item.name === info.name) {
+        item.believer += 5
+      }
+    }
+    fs.writeJSONSync('./database.json', db)
   })
 
   // 切断時の処理
-  socket.on('beforeClose', (id) => {
-    console.log(id)
-    socket.on('disconnect', () => {
-      console.log('ユーザー is 退出した');
-    })
-  })
+  // socket.on('beforeClose', (id) => {
+  //   console.log(id)
+  //   socket.on('disconnect', () => {
+  //     console.log('ユーザー is 退出した');
+  //   })
+  // })
 })
 
 http.listen(PORT, () => {

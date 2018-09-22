@@ -35,9 +35,7 @@
       socketio.on('init', (db) => {
         for (playerInfo of db) {
           const element = document.createElement('li')
-          playerInfo = JSON.stringify(playerInfo).replace(/[{}"]/g, '').replace(/:/g, ',').split(',')
-          playerInfo.shift()
-          element.innerText = 'ID: ' + playerInfo[1] + ' 宗教名: ' + playerInfo[3] + ' 信者数: ' + playerInfo[5] + '人'
+          element.innerText = JSON.stringify(playerInfo)
           element.setAttribute('class', 'list-group-item pb-1 pt-1')
           document.getElementById('playerInfo').appendChild(element)
         }
@@ -46,9 +44,7 @@
       // プレイヤー情報の表示
       socketio.on('message', (playerInfo) => {
         const element = document.createElement('li')
-        playerInfo = playerInfo.replace(/[{}"]/g, '').replace(/:/g, ',').split(',')
-        playerInfo.shift()
-        element.innerText = 'ID: ' + playerInfo[1] + ' 宗教名: ' + playerInfo[3] + ' 信者数: ' + playerInfo[5] + '人'
+        element.innerText = playerInfo
         element.setAttribute('class', 'list-group-item pb-1 pt-1')
         document.getElementById('playerInfo').appendChild(element)
       })
@@ -57,19 +53,13 @@
       document.getElementById('battle').addEventListener('click', () => {
         // フォームデータの送信
         let religion = document.getElementById('religion').value
-        let id = generateId()
 
-        sessionStorage.setItem('id', id)
+        sessionStorage.setItem('name', religion)
         sessionStorage.setItem('believer', 100)
-        sessionStorage.setItem('hp', 100)
-        sessionStorage.setItem('myInfo',religion)
 
         socketio.emit('message', JSON.stringify({
-          [id]: {
-            'id': id,
-            'name': religion,
-            'believer': 100,
-          }
+          'name': religion,
+          'believer': 100,
         }))
 
         document.getElementById('religion').value = ''
@@ -88,12 +78,12 @@
       document.getElementById('attack').addEventListener('click', () => {
         const enemy = document.getElementById('enemy').value
         const word = document.getElementById('word').value
-        const myInfo = sessionStorage.getItem('myInfo');
+        const name = sessionStorage.getItem('name');
 
         socketio.emit('attack', {
           enemy: enemy,
           word: word,
-          myInfo: myInfo
+          name: name
         })
       })
 
@@ -101,15 +91,6 @@
       window.addEventListener('beforeunload', () => {
         socketio.emit('beforeClose', sessionStorage.getItem('id'))
       }, true)
-
-      // ランダムな文字列の生成
-      const generateId = () => {
-        const len = 10
-        const char = 'abcdefghijklmnopqrstuvwxyz0123456789'
-        let id = ''
-        for (let i = 0; i < len; i++) id += char[Math.floor(Math.random() * char.length)]
-        return id
-      }
     </script>
   </body>
 </html>
