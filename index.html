@@ -17,10 +17,10 @@
             <button type="button" id="battle" class="btn btn-danger">たたかう</button>
           </div>
         </form>
-        <form id="fight" style="display: none;">
-          <input type="text" id="enemy" placeholder="てき">
-          <input type="text" id="word" placeholder="ことば">
-          <button type="button" id="attack">こうげき</button>
+        <form id="fight" class="row mx-0 mt-4" style="display: none;">
+          <input type="text" id="enemy" class="form-control col-4 d-inline-block" placeholder="てき">
+          <input type="text" id="word" class="form-control col-4 d-inline-block" placeholder="ことば">
+          <button type="button" id="attack" class="btn btn-danger col-auto">こうげき</button>
         </form>
       </div>
     </div>
@@ -77,7 +77,7 @@
         create.parentNode.removeChild(create)
 
         // DOM生成
-        document.getElementById('fight').setAttribute('style', 'display: inline;')
+        document.getElementById('fight').setAttribute('style', 'display: block;')
 
         return false
       })
