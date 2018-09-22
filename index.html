@@ -24,6 +24,10 @@
         </div>
         <button type="button" id="battle">たたかう</button>
       </form>
+      <form id="fight" style="display: none;">
+        <input type="text" id="enemy">
+        <button type="button" id="attack">こうげき</button>
+      </form>
     </div>
     <script>
       const socketio = io()
@@ -73,18 +77,18 @@
         create.parentNode.removeChild(create)
 
         // DOM生成
-        let form = document.createElement('form')
-        form.setAttribute('id', 'fight')
-        let enemy = document.createElement('input')
-        enemy.setAttribute('type', 'text')
-        enemy.setAttribute('id', 'enemy')
-        let attack = document.createElement('button')
-        attack.setAttribute('type', 'button')
-        attack.setAttribute('id', 'attack')
-        attack.innerText = 'こうげき'
-        form.appendChild(enemy)
-        form.appendChild(attack)
-        document.getElementById('field').appendChild(form)
+//        let form = document.createElement('form')
+//        form.setAttribute('id', 'fight')
+//        let enemy = document.createElement('input')
+//        enemy.setAttribute('type', 'text')
+//        enemy.setAttribute('id', 'enemy')
+//        let attack = document.createElement('button')
+//        attack.setAttribute('type', 'button')
+//        attack.setAttribute('id', 'attack')
+//        attack.innerText = 'こうげき'
+//        form.appendChild(enemy)
+//        form.appendChild(attack)
+//        document.getElementById('field').appendChild(form)
 
         return false
       })

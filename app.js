@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
-const config = require('./.env')
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
-const PORT = config.PORT || 7000
+require('dotenv').config();
+const PORT = process.env.PORT || 7000
 const fs = require('fs-extra')
 
 app.get('/' , (req, res) => {

@@ -4,6 +4,6 @@
 $ npm i
 $ touch database.json
 $ echo '[]' > database.json
-$ cp config.json.example config.json
+$ cp .env.example .env
 $ node app.js
 ```
