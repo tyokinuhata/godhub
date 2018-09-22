@@ -8,35 +8,37 @@
   <body>
     <h1>GodHub</h1>
     <ul id="messages"></ul>
-    <form id="create">
-      <div>
-        <label>宗教: </label>
-        <input type="text" id="religion">
-      </div>
-      <div>
-        <label>攻撃力: </label>
-        <input type="number" id="attack">
-      </div>
-      <div>
-        <label>守備力: </label>
-        <input type="number" id="defense">
-      </div>
-      <button type="button" id="battle">たたかう</button>
-    </form>
+    <div id="field">
+      <form id="create">
+        <div>
+          <label>宗教: </label>
+          <input type="text" id="religion">
+        </div>
+        <div>
+          <label>攻撃力: </label>
+          <input type="number" id="attack">
+        </div>
+        <div>
+          <label>守備力: </label>
+          <input type="number" id="defense">
+        </div>
+        <button type="button" id="battle">たたかう</button>
+      </form>
+    </div>
     <script>
       const socketio = io()
 
       // 宗教を作ってたたかいを開始する
       document.getElementById('battle').addEventListener('click', () => {
         let religion = document.getElementById('religion').value
-        let attack = document.getElementById('attack').value
-        let defense = document.getElementById('defense').value
+        let attackPower = document.getElementById('attack').value
+        let defensePower = document.getElementById('defense').value
         let id = generateId()
         let message = {
           [id]: {
             'name': religion,
-            'attack': attack,
-            'defense': defense,
+            'attack': attackPower,
+            'defense': defensePower,
             'hp': 100,
           }
         }
@@ -44,6 +46,20 @@
         document.getElementById('religion').value = ''
         let create = document.getElementById('create')
         create.parentNode.removeChild(create)
+
+        let form = document.createElement('form')
+        form.setAttribute('id', 'fight')
+        let enemy = document.createElement('input')
+        enemy.setAttribute('type', 'text')
+        enemy.setAttribute('id', 'enemy')
+        let attack = document.createElement('button')
+        attack.setAttribute('type', 'button')
+        attack.setAttribute('id', 'attack')
+        attack.innerText = 'こうげき'
+        form.appendChild(enemy)
+        form.appendChild(attack)
+        document.getElementById('field').appendChild(form)
+
         return false
       })
 
