@@ -12,9 +12,11 @@ app.get('/' , (req, res) => {
 io.on('connection', (socket) => {
   console.log('Socket.io is 繋がってる')
 
+  // 入室前にいたプレイヤーの情報を送信
   let db = fs.readJSONSync('./database.json')
   io.to(socket.id).emit('db', db)
 
+  // プレイヤー情報の更新
   socket.on('message', (msg) => {
     let db = fs.readJSONSync('./database.json')
     db.push(JSON.parse(msg))
