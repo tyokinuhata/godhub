@@ -46,7 +46,10 @@
       // プレイヤー情報の表示
       socketio.on('message', (playerInfo) => {
         const element = document.createElement('li')
-        element.innerText = playerInfo
+        playerInfo = playerInfo.replace(/[{}"]/g, '').replace(/:/g, ',').split(',')
+        playerInfo.shift()
+        element.innerText = 'ID: ' + playerInfo[1] + ' 宗教名: ' + playerInfo[3] + ' 信者数: ' + playerInfo[5] + '人'
+        element.setAttribute('class', 'list-group-item pb-1 pt-1')
         document.getElementById('playerInfo').appendChild(element)
       })
 
