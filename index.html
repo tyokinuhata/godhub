@@ -26,6 +26,7 @@
     <script>
       const socketio = io()
 
+      // 宗教を作ってたたかいを開始する
       document.getElementById('battle').addEventListener('click', () => {
         let religion = document.getElementById('religion').value
         let attack = document.getElementById('attack').value
@@ -44,12 +45,14 @@
         return false
       })
 
+      // 情報の表示
       socketio.on('message', (msg) => {
         const element = document.createElement('li')
         element.innerText = msg
         document.getElementById('messages').appendChild(element)
       })
 
+      // ランダムな文字列の生成
       const generateId = () => {
         const len = 10
         const char = 'abcdefghijklmnopqrstuvwxyz0123456789'

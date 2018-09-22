@@ -7,6 +7,7 @@ const fs = require('fs-extra')
 
 app.get('/' , (req, res) => {
   res.sendFile(__dirname + '/index.html')
+  io.emit()
 })
 
 io.on('connection', (socket) => {
