@@ -14,7 +14,7 @@ io.on('connection', (socket) => {
 
   // 入室前にいたプレイヤーの情報を送信
   let db = fs.readJSONSync('./database.json')
-  io.to(socket.id).emit('db', db)
+  io.to(socket.id).emit('init', db)
 
   // プレイヤー情報の更新
   socket.on('message', (playerInfo) => {

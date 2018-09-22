@@ -16,11 +16,11 @@
         </div>
         <div>
           <label>攻撃力: </label>
-          <input type="number" id="attack">
+          <input type="number" id="attackPower">
         </div>
         <div>
           <label>守備力: </label>
-          <input type="number" id="defense">
+          <input type="number" id="defensePower">
         </div>
         <button type="button" id="battle">たたかう</button>
       </form>
@@ -29,10 +29,10 @@
       const socketio = io()
 
       // 入室前にいたプレイヤー情報を取ってくる
-      socketio.on('db', (db) => {
-        for (data of db) {
+      socketio.on('init', (db) => {
+        for (playerInfo of db) {
           const element = document.createElement('li')
-          element.innerText = JSON.stringify(data)
+          element.innerText = JSON.stringify(playerInfo)
           document.getElementById('playerInfo').appendChild(element)
         }
       })
@@ -48,8 +48,8 @@
       document.getElementById('battle').addEventListener('click', () => {
         // フォームデータの送信
         let religion = document.getElementById('religion').value
-        let attackPower = document.getElementById('attack').value
-        let defensePower = document.getElementById('defense').value
+        let attackPower = document.getElementById('attackPower').value
+        let defensePower = document.getElementById('defensePower').value
         let id = generateId()
         let message = {
           [id]: {
