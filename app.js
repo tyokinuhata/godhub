@@ -7,7 +7,8 @@ const fs = require('fs-extra')
 
 app.get('/' , (req, res) => {
   res.sendFile(__dirname + '/index.html')
-  io.emit()
+  let db = fs.readJSONSync('./database.json')
+  io.emit('message', db)
 })
 
 io.on('connection', (socket) => {
@@ -16,7 +17,7 @@ io.on('connection', (socket) => {
     let db = fs.readJSONSync('./database.json')
     db.push(JSON.parse(msg))
     fs.writeJSONSync('./database.json', db)
-    io.emit('message', JSON.stringify(db))
+    io.emit('message', db)
   })
 })
 

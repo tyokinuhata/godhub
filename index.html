@@ -47,9 +47,13 @@
 
       // 情報の表示
       socketio.on('message', (msg) => {
-        const element = document.createElement('li')
-        element.innerText = msg
-        document.getElementById('messages').appendChild(element)
+        msg = JSON.parse(msg)
+        console.log(msg)
+        for (message of msg) {
+          const element = document.createElement('li')
+          element.innerText = JSON.stringify(message)
+          document.getElementById('messages').appendChild(element)
+        }
       })
 
       // ランダムな文字列の生成
