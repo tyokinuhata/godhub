@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tyokinuhata/godhub#readme",
   "dependencies": {
+    "child_process": "^1.0.2",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "fs-extra": "^7.0.0",

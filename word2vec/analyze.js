@@ -1,7 +1,8 @@
 const w2v = require( 'word2vec' )
-const search = process.argv[2].trim()
+const fs = require('fs-extra')
 
-w2v.loadModel(__dirname + '/vector.txt', (err, model) => {
-  console.log(model.mostSimilar(search , 10))
-  return model.mostSimilar(search , 10)
-})
+exports.analyze = (argv) => {
+  w2v.loadModel(__dirname + '/vector.txt', (err, model) => {
+    fs.writeJSONSync('./word2vec/result.json', model.mostSimilar(argv , 10))
+  })
+}

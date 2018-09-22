@@ -5,6 +5,8 @@ const io = require('socket.io')(http)
 require('dotenv').config();
 const PORT = process.env.PORT || 7000
 const fs = require('fs-extra')
+// const execSync = require('child_process').execSync
+const analyze = require('./word2vec/analyze.js')
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
@@ -27,15 +29,20 @@ io.on('connection', (socket) => {
 
   // こうげき
   socket.on('attack', (info) => {
+    analyze.analyze(info.word)
+
+    let results = fs.readJSONSync('./word2vec/result.json')
+    let damage = 0
+    for (result of results) damage += result.dist
+    damage = Math.ceil(damage * 3)
+
     let db = fs.readJSONSync('./database.json')
-    console.log(db)
-    console.log(info)
     for (item of db) {
       if (item.name === info.enemy) {
-        item.believer -= 5
+        item.believer -= damage
       }
       if (item.name === info.name) {
-        item.believer += 5
+        item.believer += damage
       }
     }
     fs.writeJSONSync('./database.json', db)
