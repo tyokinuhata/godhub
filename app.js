@@ -23,6 +23,10 @@ io.on('connection', (socket) => {
     fs.writeJSONSync('./database.json', db)
     io.emit('message', playerInfo)
   })
+
+  socket.on('attack', (enemyInfo) => {
+    console.log(enemyInfo)
+  })
 })
 
 http.listen(PORT, () => {

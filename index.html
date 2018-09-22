@@ -51,15 +51,21 @@
         let attackPower = document.getElementById('attackPower').value
         let defensePower = document.getElementById('defensePower').value
         let id = generateId()
-        let message = {
+
+        sessionStorage.setItem('id', id)
+        sessionStorage.setItem('attack', attackPower)
+        sessionStorage.setItem('defense', defensePower)
+        sessionStorage.setItem('hp', 100)
+
+        socketio.emit('message', JSON.stringify({
           [id]: {
             'name': religion,
             'attack': attackPower,
             'defense': defensePower,
             'hp': 100,
           }
-        }
-        socketio.emit('message', JSON.stringify(message))
+        }))
+
         document.getElementById('religion').value = ''
 
         // DOM削除
@@ -81,6 +87,13 @@
         document.getElementById('field').appendChild(form)
 
         return false
+      })
+
+      // 攻撃する
+      document.getElementById('attack').addEventListener('click', () => {
+        const enemy = document.getElementById('enemy')
+        console.log(enemy)
+        socketio.emit('attack', { enemy: enemy, attack: sessionStorage.getItem('attack') })
       })
 
       // ランダムな文字列の生成
