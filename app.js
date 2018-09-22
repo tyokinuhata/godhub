@@ -24,6 +24,7 @@ io.on('connection', (socket) => {
     io.emit('message', playerInfo)
   })
 
+  // こうげき
   socket.on('attack', (enemyInfo) => {
     console.log(enemyInfo)
     // ここ
