@@ -1,5 +1,5 @@
 {
   "development": {
-     "PORT":7000
+     "PORT": 7000
     }
 }
