@@ -19,6 +19,7 @@ $ vim word2vec/word.txt
 ##### 分かちファイルの作成
 
 ```bash
+$ cd mecab-ipadic-neologd
 $ echo `mecab-config --dicdir`"/mecab-ipadic-neologd"
 > XXX
 $ mecab -d XXX -Owakati ../word2vec/word.txt > ../word2vec/wakati.txt
