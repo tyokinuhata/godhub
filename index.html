@@ -8,10 +8,10 @@
   <body>
     <div class="container">
       <h1 class="h1">GodHub</h1>
-      <ul id="playerInfo"></ul>
+      <ul id="playerInfo" class="list-group"></ul>
       <div id="field">
-        <form id="create" class="row">
-          <label class="col-md-1">宗教: </label>
+        <form id="create" class="row mt-4">
+          <label class="col-md-1">ID: </label>
           <input type="text" id="religion" class="form-control col-md-6">
           <div class="col-md-3">
             <button type="button" id="battle" class="btn btn-danger">たたかう</button>
@@ -35,7 +35,10 @@
       socketio.on('init', (db) => {
         for (playerInfo of db) {
           const element = document.createElement('li')
-          element.innerText = JSON.stringify(playerInfo)
+          playerInfo = JSON.stringify(playerInfo).replace(/[{}"]/g, '').replace(/:/g, ',').split(',')
+          playerInfo.shift()
+          element.innerText = 'ID: ' + playerInfo[1] + ' 宗教名: ' + playerInfo[3] + ' 信者数: ' + playerInfo[5] + '人'
+          element.setAttribute('class', 'list-group-item pb-1 pt-1')
           document.getElementById('playerInfo').appendChild(element)
         }
       })
