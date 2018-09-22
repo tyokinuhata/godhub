@@ -1,4 +1,4 @@
-# godhub
+# GodHub
 
 ```bash
 $ npm i
