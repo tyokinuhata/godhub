@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>GodHub</h1>
-    <ul id="messages"></ul>
+    <ul id="playerInfo"></ul>
     <div id="field">
       <form id="create">
         <div>
@@ -28,20 +28,20 @@
     <script>
       const socketio = io()
 
-      // 入室前にいたプレイヤーの情報を取ってくる
+      // 入室前にいたプレイヤー情報を取ってくる
       socketio.on('db', (db) => {
         for (data of db) {
           const element = document.createElement('li')
           element.innerText = JSON.stringify(data)
-          document.getElementById('messages').appendChild(element)
+          document.getElementById('playerInfo').appendChild(element)
         }
       })
 
-      // 情報の表示
-      socketio.on('message', (msg) => {
+      // プレイヤー情報の表示
+      socketio.on('message', (playerInfo) => {
         const element = document.createElement('li')
-        element.innerText = msg
-        document.getElementById('messages').appendChild(element)
+        element.innerText = playerInfo
+        document.getElementById('playerInfo').appendChild(element)
       })
 
       // 宗教を作ってたたかいを開始する

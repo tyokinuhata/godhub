@@ -17,11 +17,11 @@ io.on('connection', (socket) => {
   io.to(socket.id).emit('db', db)
 
   // プレイヤー情報の更新
-  socket.on('message', (msg) => {
+  socket.on('message', (playerInfo) => {
     let db = fs.readJSONSync('./database.json')
-    db.push(JSON.parse(msg))
+    db.push(JSON.parse(playerInfo))
     fs.writeJSONSync('./database.json', db)
-    io.emit('message', msg)
+    io.emit('message', playerInfo)
   })
 })
 
