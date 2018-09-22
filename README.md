@@ -1,25 +1,37 @@
 # GodHub
 
+神と神が争い合うゲームです.
+
+### 環境構築
+
 ```bash
-$ npm i
-$ touch database.json
-$ echo '[]' > database.json
-$ cp .env.example .env
-$ node app.js
+$ make setup
 ```
 
 ### word2vecの設定
 
+##### 辞書データの書き込み
+
 ```bash
-$ git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
 $ vim word2vec/word.txt // 辞書データを書き込む
-$ touch word2vec/wakati.txt & touch word2vec/vector.txt
-$ cd mecab-ipadic-neologd
-$ ./bin/install-mecab-ipadic-neologd -n
+```
+
+##### 分かちファイルの作成
+
+```bash
 $ echo `mecab-config --dicdir`"/mecab-ipadic-neologd"
 > XXX
 $ mecab -d XXX -Owakati ../word2vec/word.txt > ../word2vec/wakati.txt
-$ cd ..
+```
+
+##### vector.txtの作成
+
+```bash
 $ node word2vec/make.js
+```
+
+##### 解析の実行
+
+```bash
 $ node word2vec/analyze.js
 ```
