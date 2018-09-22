@@ -6,7 +6,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 7000
 const fs = require('fs-extra')
 
-app.get('/' , (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
@@ -28,7 +28,23 @@ io.on('connection', (socket) => {
   socket.on('attack', (enemyInfo) => {
     console.log(enemyInfo)
     // ここ
-  })
+    let db = fs.readJSONSync('./database.json')
+    db.forEach(function (obj) {
+      for (key in obj) {
+        if (obj[key].name == enemyInfo.enemy) {
+          console.log(obj[key].believer -= 5)
+          fs.writeJSONSync('./database.json', db)
+        }
+        if (obj[key].name == enemyInfo.myInfo) {
+          console.log(obj[key].believer += 5)
+          fs.writeJSONSync('./database.json', db)
+        }
+      }
+    })
+  
+  });
+  
+
 })
 
 http.listen(PORT, () => {
