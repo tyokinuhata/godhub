@@ -15,12 +15,13 @@
       </div>
       <div>
         <label>攻撃力: </label>
-        <input type="number" id="attack">
+        <input type="number" id="attack" >
       </div>
       <div>
         <label>守備力: </label>
         <input type="number" id="defense">
       </div>
+      <div id="errorText">※攻撃力+守備力<=200 になるように入力おねがいします。</div>
       <button type="button" id="battle">たたかう</button>
     </form>
     <script>
@@ -31,6 +32,17 @@
         let attack = document.getElementById('attack').value
         let defense = document.getElementById('defense').value
         let id = generateId()
+        let error_text = document.getElementById('errorText')
+        if(attack + defense  > 200) {
+            error_text.innerHTML="攻撃力+守備力 <= 200になるように入力してください。"
+            error_text.style.color ="red"
+            return false
+        }else {
+            error_text.innerHTML ="";
+        }
+
+
+
         let message = {
           [id]: {
             'name': religion,
